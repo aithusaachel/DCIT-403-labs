@@ -13,7 +13,7 @@ from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
 
 load_dotenv()
-# Windows terminals default to cp1252 and crash on characters the model uses (e.g.  )
+# Windows terminals default to cp1252 and crash on characters the model uses (e.g. narrow no-break spaces)
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 MODEL = os.getenv("LLM_MODEL", "groq/openai/gpt-oss-20b")
 HERE = Path(__file__).resolve().parent
