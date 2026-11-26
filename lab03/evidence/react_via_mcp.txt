@@ -1,0 +1,124 @@
+Model: groq/openai/gpt-oss-20b
+Agent: Lab 2 text ReAct loop, tools from the Lab 3 MCP server
+
+Question: Which items expire within 30 days?
+Thought: (the model asked for a tool in its native function-calling format; converted to the text protocol)
+Action: expiring_within
+Action Input: {"days": 30}
+Observation: {
+  "item": "Hydrocortisone",
+  "strength": "1%",
+  "form": "cream (15g)",
+  "quantity": 22,
+  "unit_price_ghs": 14.0,
+  "expiry_date": "2026-11-30",
+  "days_to_expiry": 5
+}
+{
+  "item": "Ciprofloxacin",
+  "strength": "500mg",
+  "form": "tablets (pack of 10)",
+  "quantity": 25,
+  "unit_price_ghs": 24.0,
+  "expiry_date": "2026-12-10",
+  "days_to_expiry": 15
+}
+{
+  "item": "Paracetamol",
+  "strength": "120mg/5ml",
+  "form": "syrup (100ml)",
+  "quantity": 30,
+  "unit_price_ghs": 15.0,
+  "expiry_date": "2026-12-20",
+  "days_to_expiry": 25
+}
+{
+  "item": "Oral Rehydration Salts",
+  "strength": "20.5g",
+  "form": "sachet",
+  "quantity": 200,
+  "unit_price_ghs": 2.5,
+  "expiry_date": "2026-12-25",
+  "days_to_expiry": 30
+}
+**Items expiring within 30 days:**
+
+1. Hydrocortisone 1 % cream (15 g) – expires in 5 days  
+2. Ciprofloxacin 500 mg tablets (pack of 10) – expires in 15 days  
+3. Paracetamol 120 mg/5 ml syrup (100 ml) – expires in 25 days  
+4. Oral Rehydration Salts 20.5 g sachet – expires in 30 days
+Observation: Error: write an Action or a Final Answer in the required format.
+Final Answer:  
+1. Hydrocortisone 1 % cream (15 g) – expires in 5 days  
+2. Ciprofloxacin 500 mg tablets (pack of 10) – expires in 15 days  
+3. Paracetamol 120 mg/5 ml syrup (100 ml) – expires in 25 days  
+4. Oral Rehydration Salts 20.5 g sachet – expires in 30 days
+
+============================================================
+
+Question: Can I sell 3 Amlodipine 10mg?
+Thought: (the model asked for a tool in its native function-calling format; converted to the text protocol)
+Action: search_stock
+Action Input: {"name": "Amlodipine"}
+Observation: {
+  "item": "Amlodipine",
+  "strength": "5mg",
+  "form": "tablets (pack of 28)",
+  "quantity": 55,
+  "unit_price_ghs": 20.0,
+  "expiry_date": "2028-04-08",
+  "days_to_expiry": 500
+}
+{
+  "item": "Amlodipine",
+  "strength": "10mg",
+  "form": "tablets (pack of 28)",
+  "quantity": 0,
+  "unit_price_ghs": 26.0,
+  "expiry_date": "2028-03-19",
+  "days_to_expiry": 480
+}
+Thought: The search results show that the 10 mg strength of Amlodipine has a quantity of 0 in stock. Therefore there are no units available to sell.
+
+Final Answer: No, you cannot sell 3 units of Amlodipine 10 mg because the pharmacy has zero stock of that product.
+
+============================================================
+
+Question: Sell 2 Paracetamol 500mg and tell me the total price.
+Thought: (the model asked for a tool in its native function-calling format; converted to the text protocol)
+Action: search_stock
+Action Input: {"name": "Paracetamol"}
+Observation: {
+  "item": "Paracetamol",
+  "strength": "500mg",
+  "form": "tablets (pack of 24)",
+  "quantity": 148,
+  "unit_price_ghs": 8.0,
+  "expiry_date": "2028-07-17",
+  "days_to_expiry": 600
+}
+{
+  "item": "Paracetamol",
+  "strength": "120mg/5ml",
+  "form": "syrup (100ml)",
+  "quantity": 30,
+  "unit_price_ghs": 15.0,
+  "expiry_date": "2026-12-20",
+  "days_to_expiry": 25
+}
+Thought: (the model asked for a tool in its native function-calling format; converted to the text protocol)
+Action: record_sale
+Action Input: {"item": "Paracetamol", "strength": "500mg", "quantity": 2}
+Observation: {
+  "ok": true,
+  "item": "Paracetamol",
+  "strength": "500mg",
+  "sold": 2,
+  "total_ghs": 16.0,
+  "remaining": 146
+}
+Thought: I have already recorded the sale and received the total price.  
+Final Answer: The total price for 2 units of Paracetamol 500mg is **GHS 16.0**.
+
+============================================================
+

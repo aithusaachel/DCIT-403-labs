@@ -1,0 +1,12 @@
+Model: groq/openai/gpt-oss-20b
+Run at: 20261125_140506
+Steps: 2  Tokens: {'prompt': 377, 'completion': 157}
+
+Question: What is the WiFi password in the CS lab?
+Thought: (the model asked for a tool in its native function-calling format; converted to the text protocol)
+Action: campus_fact
+Action Input: WiFi password CS lab
+Observation: - The CS computer labs are open to students Monday to Friday, 8:00am to 8:00pm.
+Final Answer: I couldn't find the WiFi password.
+
+ANSWER: I couldn't find the WiFi password.

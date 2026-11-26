@@ -1,0 +1,9 @@
+Model: groq/openai/gpt-oss-20b
+Run at: 20261125_140500
+Steps: 1  Tokens: {'prompt': 313, 'completion': 106}
+
+Question: What does PEAS stand for in AI agent design?
+Thought: I can answer this from knowledge.  
+Final Answer: PEAS stands for **Performance measure, Environment, Actuators, Sensors**.
+
+ANSWER: PEAS stands for **Performance measure, Environment, Actuators, Sensors**.
